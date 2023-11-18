@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import { ThemeProvider } from "@/components/ui/theme";
+import Nav from "@/components/nav";
 
 const satoshi = localFont({
   src: "../public/fonts/Satoshi-Variable.ttf",
@@ -20,7 +22,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={satoshi.className}>{children}</body>
+      <body className={satoshi.className}>
+        <ThemeProvider
+          attribute="class"
+          // defaultTheme="dark"
+          // enableSystem
+          forcedTheme="light"
+          disableTransitionOnChange
+        >
+          <Nav />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
