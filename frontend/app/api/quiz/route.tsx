@@ -1,12 +1,3 @@
-export type Quiz = {
-  id: number;
-  question: string;
-  answer: string;
-  importance: number;
-  video: string;
-  createdAt: Date;
-};
-
 export async function GET() {
   const res = await fetch("http://localhost:8000", {
     headers: {
