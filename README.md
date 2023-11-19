@@ -1,4 +1,4 @@
-# 🧠 MHacks - Companion App for Memory Support
+# 🧠 CogniCare - Companion App for Memory Support
 
 ## Overview
 🚀 This innovative project, crafted during the MHacks hackathon at the University of Michigan, is designed as a companion for individuals facing memory recollection challenges, including those at risk of Alzheimer's disease or Dementia. Leveraging advanced AI and an interactive UI, our solution offers a stress-free and engaging experience to support memory health.
