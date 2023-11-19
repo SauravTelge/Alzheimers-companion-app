@@ -16,6 +16,7 @@ export default function VideoModal({
       <DialogContent className="aspect-video w-full max-w-screen-lg overflow-hidden bg-black p-0">
         {/* <video autoPlay controls={false} loop src={path.split("/backend")[1]} /> */}
         <video autoPlay controls={false} loop src={path} />
+        {path}
       </DialogContent>
     </Dialog>
   );

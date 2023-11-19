@@ -2,22 +2,46 @@ import Nav from "@/components/nav";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
+import Brain from "./brain.jpeg";
+import Link from "next/link";
+
 export default function Home() {
   return (
     <>
       <Nav />
       <main className="flex h-screen w-screen items-start justify-center overflow-hidden pt-32">
         <div className="flex w-full max-w-screen-lg flex-col items-center justify-start px-4">
-          <h1 className=" text-center text-5xl font-semibold">
-            <span className="text-blue-600">
-              Alzheimer&apos;s Disease Monitoring
+          <h1 className="py-3 text-center text-5xl font-bold leading-tight">
+            AI-Powered Companion For <br />
+            <span className="bg-gradient-to-br from-primary to-blue-950 bg-clip-text text-6xl text-transparent">
+              Memory Support
             </span>
-            <br />
-            Through Memories and AI
           </h1>
           <div className="mt-8 flex space-x-4">
-            <Button>Primary Button</Button>
-            <Button variant="secondary">Secondary</Button>
+            <Link href="/dashboard">
+              <Button size="lg">Dashboard</Button>
+            </Link>
+            <Link href="/explorer">
+              <Button size="lg" variant="secondary">
+                Memory Explorer
+              </Button>
+            </Link>
+          </div>
+          <div className="relative z-0 mt-16 flex aspect-[7/3] w-full">
+            <div className="flex aspect-[7/3] w-full items-center overflow-hidden rounded-2xl bg-cover">
+              <Image
+                src={Brain}
+                alt=""
+                className="min-w-full max-w-full object-cover"
+              />
+            </div>
+            <div className="absolute -z-10 flex aspect-[7/3] w-full items-center overflow-hidden rounded-2xl bg-cover blur-xl">
+              <Image
+                src={Brain}
+                alt=""
+                className="min-w-full max-w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </main>
