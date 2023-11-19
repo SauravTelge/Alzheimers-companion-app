@@ -2,16 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, Brain } from "lucide-react";
+import { ArrowLeft, ArrowRight, Brain, PlayCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { Separator } from "../ui/separator";
-import Bubbles from "./bubbles";
-import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
 import { Textarea } from "../ui/textarea";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import VideoModal from "../videoModal";
 
 export default function ContextQuestions({
   setProgress,
@@ -36,8 +34,29 @@ export default function ContextQuestions({
     },
   ]);
 
+  const [data, setData] = useState<
+    { question: string; answer: string; video: string }[]
+  >([]);
+
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch("/api/questions", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setData(data.data);
+    };
+
+    getData();
+  }, []);
+
   return (
     <>
+      <VideoModal open={open} setOpen={setOpen} />
       <div className="flex w-full items-center justify-start">
         <Button
           variant="secondary"
@@ -53,6 +72,8 @@ export default function ContextQuestions({
         <Badge className="ml-4 h-8 px-4">Activity 3 of 3</Badge>
       </div>
 
+      {/* {JSON.stringify(data)} */}
+
       <Tabs value={tab} onValueChange={setTab} className="mt-8 w-[500px]">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="1">Question 1</TabsTrigger>
@@ -61,7 +82,15 @@ export default function ContextQuestions({
         </TabsList>
       </Tabs>
 
-      <Question feedback={feedback} setFeedback={setFeedback} n={tab} />
+      {data ? (
+        <Question
+          feedback={feedback}
+          setFeedback={setFeedback}
+          n={tab}
+          data={data[parseInt(tab) - 1]}
+          setOpen={setOpen}
+        />
+      ) : null}
     </>
   );
 }
@@ -70,6 +99,8 @@ function Question({
   n,
   feedback,
   setFeedback,
+  data,
+  setOpen,
 }: {
   n: string;
   feedback: {
@@ -84,12 +115,13 @@ function Question({
       }[]
     >
   >;
+  data: { question: string; answer: string; video: string };
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <>
       <div className="mt-8 text-2xl font-medium">
-        <span className="text-blue-600">Question {n}.</span> Describe X
-        situation you were in.
+        <span className="text-blue-600">Question {n}.</span> {data?.question}
       </div>
       <Textarea
         placeholder="Answer the question here."
@@ -121,8 +153,14 @@ function Question({
             Consectetur ad commodo do ea. Fugiat ex laboris aliqua sit deserunt
             irure in. In aliquip dolore culpa consequat ipsum nisi amet aute.
           </div>
-          <Button className="mt-8 text-lg font-medium" size="lg">
-            Watch Memory <Brain className="ml-3 h-4 w-4" />
+          <Button
+            onClick={() => {
+              setOpen(true);
+            }}
+            className="mt-8 text-lg font-medium"
+            size="lg"
+          >
+            <PlayCircle className="mr-3 h-4 w-4" /> Watch Memory
           </Button>
         </Card>
       ) : null}

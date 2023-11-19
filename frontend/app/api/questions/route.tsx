@@ -1,8 +1,7 @@
 export async function GET() {
-  const res = await fetch("http://localhost:8000", {
+  const res = await fetch("http://127.0.0.1:5000/questions", {
     headers: {
       "Content-Type": "application/json",
-      // "API-Key": process.env.DATA_API_KEY,
     },
   });
   const data = await res.json();
