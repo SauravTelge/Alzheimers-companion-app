@@ -5,10 +5,11 @@ export default function Home() {
   return (
     <main className="flex h-screen w-screen items-start justify-center overflow-hidden pt-32">
       <div className="flex w-full max-w-screen-lg flex-col items-center justify-start px-4">
-        <h1 className="max-w-screen-sm text-center text-4xl font-semibold">
+        <h1 className=" text-center text-5xl font-semibold">
           <span className="text-blue-600">
             Alzheimer&apos;s Disease Monitoring
-          </span>{" "}
+          </span>
+          <br />
           Through Memories and AI
         </h1>
         <div className="mt-8 flex space-x-4">
