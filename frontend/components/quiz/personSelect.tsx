@@ -58,7 +58,7 @@ export default function PersonSelect({
       <div className="flex w-full items-center justify-start">
         <Button
           variant="secondary"
-          onClick={() => setProgress((prev) => prev - 1)}
+          onClick={() => setProgress(-1)}
           className="mr-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" /> Back
@@ -145,7 +145,7 @@ export default function PersonSelect({
             onClick={() => setProgress((prev) => prev + 1)}
             className="text-lg font-medium transition-all"
           >
-            Continue <ArrowRight className="ml-3 h-4 w-4" />
+            Continue to Activity 2 <ArrowRight className="ml-3 h-4 w-4" />
           </Button>
         </>
       )}

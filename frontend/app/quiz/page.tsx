@@ -1,11 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Question } from "@/lib/types";
+import { useState } from "react";
 
 import StartQuiz from "@/components/quiz/start";
 import PersonSelect from "@/components/quiz/personSelect";

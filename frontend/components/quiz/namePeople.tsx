@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import { Separator } from "../ui/separator";
 import Bubbles from "./bubbles";
+import { Badge } from "../ui/badge";
 
 export default function NamePeople({
   setProgress,
@@ -27,7 +28,7 @@ export default function NamePeople({
       <div className="flex w-full items-center justify-start">
         <Button
           variant="secondary"
-          onClick={() => setProgress((prev) => prev - 1)}
+          onClick={() => setProgress(-1)}
           className="mr-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" /> Back
@@ -36,6 +37,7 @@ export default function NamePeople({
           Memory Quiz —{" "}
           <span className="text-blue-600">{date.toDateString()}</span>
         </div>
+        <Badge className="ml-4 h-8 px-4">Activity 2 of 3</Badge>
       </div>
 
       <div className="mt-12 text-2xl font-medium">
@@ -51,7 +53,7 @@ export default function NamePeople({
           onClick={() => setProgress((prev) => prev + 1)}
           className="mt-4 text-lg font-medium transition-all"
         >
-          Continue <ArrowRight className="ml-3 h-4 w-4" />
+          Continue to Activity 3 <ArrowRight className="ml-3 h-4 w-4" />
         </Button>
       ) : null}
     </>
