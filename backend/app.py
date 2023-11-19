@@ -54,7 +54,7 @@ def search():
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user",
-                "content": f"In which file is the answer to the following question contained (return only the file path(s)): File and content dictionary {ref}. Question: {query}"}
+                "content": f"In which file is the answer to the following question contained (return the file paths in an array of strings, in JSON): File and content dictionary {ref}. Question: {query}"}
         ]
     )
     return response['choices'][0]['message']['content']

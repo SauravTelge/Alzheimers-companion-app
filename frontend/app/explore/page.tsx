@@ -6,6 +6,7 @@ import {
   ArrowRight,
   BrainCircuit,
   Home,
+  Loader2,
   Minus,
   Plus,
   Search,
@@ -20,6 +21,7 @@ export default function Page() {
 
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
   const [minimized, setMinimized] = useState(false);
 
   const [results, setResults] = useState([
@@ -40,6 +42,7 @@ export default function Page() {
       (d: string) => d.split("/backend")[1],
     );
     setResults(processed.sort());
+    setLoading(false);
     router.refresh();
   };
 
@@ -105,12 +108,18 @@ export default function Page() {
               <Button
                 disabled={value === ""}
                 onClick={() => {
+                  setLoading(true);
                   setQuery(value);
                   onSearch();
                   setValue("");
                 }}
               >
-                Query <Search className="ml-2 h-4 w-4" />
+                Query{" "}
+                {loading ? (
+                  <Loader2 className="ml-2 h-4 w-2 animate-spin" />
+                ) : (
+                  <Search className="ml-2 h-4 w-4" />
+                )}
               </Button>
             </div>
             {query !== "" ? (

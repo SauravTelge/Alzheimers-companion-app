@@ -1,15 +1,27 @@
 import Raj from "./raj.png";
 import Saurav from "./saurav.png";
 import Krish from "./krish.png";
-import Old from "./old.png";
 import Optimize1 from "./optimize1.png";
-import Optimize2 from "./optimize2.png";
+import Extra1 from "./extra1.jpeg";
+import Extra2 from "./extra2.jpeg";
 
 export const data = {
   people: [
     {
+      image: Extra2,
+      name: "Extra2",
+    },
+    {
       image: Raj,
       name: "Raj",
+    },
+    {
+      image: Optimize1,
+      name: "Optimize1",
+    },
+    {
+      image: Extra1,
+      name: "Extra1",
     },
     {
       image: Saurav,
@@ -19,18 +31,6 @@ export const data = {
       image: Krish,
       name: "Krish",
     },
-    {
-      image: Old,
-      name: "Old",
-    },
-    {
-      image: Optimize1,
-      name: "Optimize1",
-    },
-    {
-      image: Optimize2,
-      name: "Optimize2",
-    },
   ],
-  correct: [0, 1],
+  correct: [1, 2, 4, 5],
 };
