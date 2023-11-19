@@ -8,20 +8,15 @@ import Image from "next/image";
 
 import { Separator } from "../ui/separator";
 import Bubbles from "./bubbles";
+import { Input } from "../ui/input";
 
-export default function NamePeople({
+export default function ContextQuestions({
   setProgress,
   date,
 }: {
   setProgress: React.Dispatch<React.SetStateAction<number>>;
   date: Date;
 }) {
-  const [clicked, setClicked] = useState(false);
-
-  const allowContinue = () => {
-    setClicked(true);
-  };
-
   return (
     <>
       <div className="flex w-full items-center justify-start">
@@ -39,21 +34,25 @@ export default function NamePeople({
       </div>
 
       <div className="mt-12 text-2xl font-medium">
-        Can you identify who this is? (In the picture)
+        <span className="text-blue-600">1.</span> question
       </div>
+      <Input
+        placeholder="Answer the question here."
+        className="mt-8 h-14 w-full text-lg"
+      />
+      <Button size="lg" className="mt-8 text-lg  font-medium">
+        Submit <ArrowRight className="ml-3 h-4 w-4" />
+      </Button>
 
-      <Bubbles allowContinue={allowContinue} />
+      <Separator className="my-4" />
 
-      {clicked ? (
-        <Button
-          size="lg"
-          disabled={!clicked}
-          onClick={() => setProgress((prev) => prev + 1)}
-          className="mt-4 text-lg font-medium transition-all"
-        >
-          Continue <ArrowRight className="ml-3 h-4 w-4" />
-        </Button>
-      ) : null}
+      <Button
+        size="lg"
+        onClick={() => setProgress((prev) => prev + 1)}
+        className="text-lg font-medium transition-all"
+      >
+        Continue <ArrowRight className="ml-3 h-4 w-4" />
+      </Button>
     </>
   );
 }

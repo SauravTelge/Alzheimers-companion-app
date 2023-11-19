@@ -3,10 +3,15 @@ import "./index.css";
 import Water from "./water.jpg";
 import { Card } from "@/components/ui/card";
 import TestImage from "../krish.jpg";
+import { use, useEffect, useState } from "react";
 
-export default function Bubbles() {
+export default function Bubbles({
+  allowContinue,
+}: {
+  allowContinue: () => void;
+}) {
   return (
-    <div className="relative mt-4 h-[44rem] w-full rounded-md">
+    <div className="relative mt-4 h-[44rem] w-full select-none rounded-md">
       <Card
         className={`absolute -left-52 top-0 z-10 h-48 w-48 overflow-hidden border-none bg-cover`}
       >
@@ -23,7 +28,13 @@ export default function Bubbles() {
 
         <div className="relative h-96 w-[90%]">
           <Bubble className="x1" data={1} name="Rajashekar" />
-          <Bubble className="x2" data={2} name="Krish" />
+          <Bubble
+            className="x2"
+            data={2}
+            allowContinue={allowContinue}
+            target
+            name="Krish"
+          />
           <Bubble className="x3" data={3} name="Sourav" />
           <Bubble className="x4" data={4} name="Ishaan" />
           <Bubble className="x5" data={5} name="Ruthwik" />
@@ -42,14 +53,37 @@ function Bubble({
   className,
   data,
   name,
+  allowContinue,
+  target,
 }: {
   className: string;
   data: number;
   name: string;
+  allowContinue?: () => void;
+  target?: boolean;
 }) {
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (active) {
+      if (target && allowContinue) {
+        allowContinue();
+      }
+      setTimeout(() => {
+        setActive(false);
+      }, 500);
+    }
+  }, [active]);
+
   return (
-    <div className={`bubble backdrop-blur-sm ${className}`} data-bubble={data}>
-      <span className="pointer-events-none flex h-full items-center justify-center text-3xl font-semibold text-white">
+    <div
+      onClick={() => setActive(true)}
+      className={`bubble ${
+        active ? (target ? "bg-green-300" : "bg-red-300") : ""
+      } backdrop-blur-sm transition-all ${className}`}
+      data-bubble={data}
+    >
+      <span className="pointer-events-none  flex h-full select-none items-center justify-center text-3xl font-semibold text-white">
         {name}
       </span>
     </div>

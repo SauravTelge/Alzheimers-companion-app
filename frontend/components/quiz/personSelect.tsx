@@ -17,6 +17,7 @@ import Image from "next/image";
 
 import { Separator } from "../ui/separator";
 import { data } from "./testData";
+import { Badge } from "../ui/badge";
 
 export default function PersonSelect({
   setProgress,
@@ -50,6 +51,8 @@ export default function PersonSelect({
     setSubmitted(null);
   };
 
+  const click = () => {};
+
   return (
     <>
       <div className="flex w-full items-center justify-start">
@@ -64,6 +67,7 @@ export default function PersonSelect({
           Memory Quiz —{" "}
           <span className="text-blue-600">{date.toDateString()}</span>
         </div>
+        <Badge className="ml-4 h-8 px-4">Activity 1 of 3</Badge>
       </div>
 
       <div className="mt-12 text-xl font-medium">
@@ -80,7 +84,7 @@ export default function PersonSelect({
               isRevealed: revealed,
               correct: data.correct.includes(index),
             }}
-            onClick={() => {
+            click={() => {
               if (selected.includes(index)) {
                 setSelected(selected.filter((i) => i !== index));
               } else {
@@ -132,28 +136,32 @@ export default function PersonSelect({
         </>
       ) : null}
 
-      <Separator className="my-4" />
-      <Button
-        disabled={!revealed && (!submitted || !submitted.correct)}
-        size="lg"
-        onClick={() => setProgress((prev) => prev + 1)}
-        className="text-lg font-medium transition-all"
-      >
-        Continue <ArrowRight className="ml-3 h-4 w-4" />
-      </Button>
+      {!revealed && (!submitted || !submitted.correct) ? null : (
+        <>
+          <Separator className="my-4" />
+          <Button
+            disabled={!revealed && (!submitted || !submitted.correct)}
+            size="lg"
+            onClick={() => setProgress((prev) => prev + 1)}
+            className="text-lg font-medium transition-all"
+          >
+            Continue <ArrowRight className="ml-3 h-4 w-4" />
+          </Button>
+        </>
+      )}
     </>
   );
 }
 
 function PersonCard({
   selected,
-  onClick,
+  click,
   index,
   nullify,
   reveal,
 }: {
   selected: boolean;
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  click: () => void;
   nullify: () => void;
   index: number;
   reveal: {
@@ -162,13 +170,13 @@ function PersonCard({
   };
 }) {
   return (
-    <Card
-      onClick={(e) => {
+    <button
+      onClick={() => {
         if (reveal.isRevealed) return;
         nullify();
-        onClick(e);
+        click();
       }}
-      className={`mb-4 mr-4 h-52 w-52 overflow-hidden border-none bg-cover transition-all ${
+      className={`mb-4 mr-4 h-52 w-52 overflow-hidden rounded-md border-none bg-cover transition-all ${
         reveal.isRevealed
           ? `${
               reveal.correct
@@ -185,8 +193,8 @@ function PersonCard({
       <Image
         src={data.people[index].image}
         alt=""
-        className="h-full w-full object-cover"
+        className="h-full w-full rounded-md object-cover"
       />
-    </Card>
+    </button>
   );
 }

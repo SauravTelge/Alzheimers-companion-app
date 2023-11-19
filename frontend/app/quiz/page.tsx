@@ -10,6 +10,7 @@ import { Question } from "@/lib/types";
 import StartQuiz from "@/components/quiz/start";
 import PersonSelect from "@/components/quiz/personSelect";
 import NamePeople from "@/components/quiz/namePeople";
+import ContextQuestions from "@/components/quiz/contextQuestions";
 
 export default function Page() {
   const [progress, setProgress] = useState(-1);
@@ -30,6 +31,8 @@ export default function Page() {
           <PersonSelect setProgress={setProgress} date={date} />
         ) : progress === 1 ? (
           <NamePeople setProgress={setProgress} date={date} />
+        ) : progress === 2 ? (
+          <ContextQuestions setProgress={setProgress} date={date} />
         ) : null}
       </div>
     </main>
