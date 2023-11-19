@@ -22,15 +22,15 @@ export default function ContextQuestions({
   const [feedback, setFeedback] = useState([
     {
       submitted: false,
-      feedback: "",
+      feedback: -1,
     },
     {
       submitted: false,
-      feedback: "",
+      feedback: -1,
     },
     {
       submitted: false,
-      feedback: "",
+      feedback: -1,
     },
   ]);
 
@@ -46,6 +46,7 @@ export default function ContextQuestions({
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-store",
       });
       const data = await res.json();
       setData(data.data);
@@ -56,7 +57,13 @@ export default function ContextQuestions({
 
   return (
     <>
-      <VideoModal open={open} setOpen={setOpen} />
+      {data && data[parseInt(tab) - 1]?.video ? (
+        <VideoModal
+          path={"/" + data[parseInt(tab) - 1].video.replaceAll("\\", "/")}
+          open={open}
+          setOpen={setOpen}
+        />
+      ) : null}
       <div className="flex w-full items-center justify-start">
         <Button
           variant="secondary"
@@ -105,59 +112,78 @@ function Question({
   n: string;
   feedback: {
     submitted: boolean;
-    feedback: string;
+    feedback: number;
   }[];
   setFeedback: React.Dispatch<
     React.SetStateAction<
       {
         submitted: boolean;
-        feedback: string;
+        feedback: number;
       }[]
     >
   >;
   data: { question: string; answer: string; video: string };
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const [value, setValue] = useState("");
+
+  const onSubmit = async () => {
+    const res = await fetch("/api/accuracy", {
+      method: "POST",
+      body: JSON.stringify({
+        given: value,
+        real: data.answer,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    });
+
+    const jsonData = await res.json();
+
+    const newFeedback = [...feedback];
+    newFeedback[parseInt(n) - 1].submitted = true;
+    newFeedback[parseInt(n) - 1].feedback = jsonData.data;
+
+    setFeedback(newFeedback);
+  };
+
   return (
     <>
       <div className="mt-8 text-2xl font-medium">
         <span className="text-blue-600">Question {n}.</span> {data?.question}
       </div>
       <Textarea
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
         placeholder="Answer the question here."
         className="mt-8 h-12 max-h-36 w-full text-lg"
       />
       <Button
-        onClick={() => {
-          const newFeedback = [...feedback];
-          newFeedback[parseInt(n) - 1].submitted = true;
-          newFeedback[parseInt(n) - 1].feedback = "Lorem " + n;
-
-          setFeedback(newFeedback);
-        }}
+        onClick={() => onSubmit()}
         size="lg"
-        disabled={feedback[parseInt(n) - 1].submitted}
+        disabled={feedback[parseInt(n) - 1].submitted || value === ""}
         className="mt-8 text-lg font-medium"
       >
         Submit <ArrowRight className="ml-3 h-4 w-4" />
       </Button>
 
       {feedback[parseInt(n) - 1].submitted ? (
-        <Card className="mt-6 p-6">
-          <div className="mb-4 text-lg font-semibold">
-            Feedback On Your Response
-          </div>
-          <div className="text-lg leading-relaxed">
-            Voluptate consectetur dolor id aliquip magna nulla laborum id veniam
-            tempor deserunt. Tempor et occaecat eu adipisicing reprehenderit.
-            Consectetur ad commodo do ea. Fugiat ex laboris aliqua sit deserunt
-            irure in. In aliquip dolore culpa consequat ipsum nisi amet aute.
+        <Card className="mt-6 w-full p-6">
+          <div className="mb-4 text-lg">
+            Accuracy of your response:{" "}
+            <span className="font-semibold">
+              {feedback[parseInt(n) - 1].feedback}/10
+            </span>
           </div>
           <Button
             onClick={() => {
               setOpen(true);
             }}
-            className="mt-8 text-lg font-medium"
+            className="mt-4 text-lg font-medium"
             size="lg"
           >
             <PlayCircle className="mr-3 h-4 w-4" /> Watch Memory

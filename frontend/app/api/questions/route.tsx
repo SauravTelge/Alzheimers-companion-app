@@ -3,6 +3,7 @@ export async function GET() {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
   const data = await res.json();
 

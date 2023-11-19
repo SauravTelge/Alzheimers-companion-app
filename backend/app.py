@@ -29,7 +29,7 @@ def gpt_accuracy(answer1, answer2):
         engine='gpt-4',
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": f"Determine the accuracy of the given answer to the real answer. Accuracy should be on a scale of 1 to 10 with 10 being almost same. Only return the number. Given answer:{answer1} True answer: {answer2}"}
+            {"role": "user", "content": f"Determine the accuracy of the given answer to the real answer. Accuracy should be on a scale of 1 to 10 with 10 being almost same. Allow for slight variation. Award more points for the correct sentence topic. Only return the number. Given answer:{answer1} True answer: {answer2}"}
         ]
     )
     return response['choices'][0]['message']['content']

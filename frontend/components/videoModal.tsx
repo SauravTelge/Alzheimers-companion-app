@@ -7,14 +7,15 @@ export default function VideoModal({
   open,
   setOpen,
 }: {
-  path?: string;
+  path: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="overflow-hidden bg-black p-0">
-        <video autoPlay controls={false} loop src={"/testvid.mp4"} />
+      <DialogContent className="aspect-video w-full max-w-screen-lg overflow-hidden bg-black p-0">
+        {/* <video autoPlay controls={false} loop src={path.split("/backend")[1]} /> */}
+        <video autoPlay controls={false} loop src={path} />
       </DialogContent>
     </Dialog>
   );
