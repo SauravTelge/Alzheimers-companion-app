@@ -2,7 +2,7 @@ import Image from "next/image";
 import "./index.css";
 import Water from "./water.jpg";
 import { Card } from "@/components/ui/card";
-import TestImage from "../krish.jpg";
+import Target from "../data/krish.png";
 import { use, useEffect, useState } from "react";
 
 export default function Bubbles({
@@ -15,7 +15,7 @@ export default function Bubbles({
       <Card
         className={`absolute -left-52 top-0 z-10 h-48 w-48 overflow-hidden border-none bg-cover`}
       >
-        <Image src={TestImage} alt="" className="h-full w-full object-cover" />
+        <Image src={Target} alt="" className="h-full w-full object-cover" />
       </Card>
       <div className="relative h-full w-full overflow-hidden rounded-md">
         <div className="absolute left-0 top-0 h-full w-full rounded-md bg-cover">
@@ -27,7 +27,7 @@ export default function Bubbles({
         </div>
 
         <div className="relative h-96 w-[90%]">
-          <Bubble className="x1" data={1} name="Rajashekar" />
+          <Bubble className="x1" data={1} name="Pearl" />
           <Bubble
             className="x2"
             data={2}
@@ -37,12 +37,12 @@ export default function Bubbles({
           />
           <Bubble className="x3" data={3} name="Sourav" />
           <Bubble className="x4" data={4} name="Ishaan" />
-          <Bubble className="x5" data={5} name="Ruthwik" />
-          <Bubble className="x6" data={6} name="Sam" />
-          <Bubble className="x7" data={7} name="Josh" />
-          <Bubble className="x8" data={8} name="Edison" />
-          <Bubble className="x9" data={9} name="Batman" />
-          <Bubble className="x10" data={10} name="Pikachu" />
+          <Bubble className="x5" data={5} name="Ian" />
+          <Bubble className="x6" data={6} name="Rajashekar" />
+          <Bubble className="x7" data={7} name="Rajan" />
+          <Bubble className="x8" data={8} name="Patrick" />
+          <Bubble className="x9" data={9} name="Mary" />
+          <Bubble className="x10" data={10} name="Ishaan" />
         </div>
       </div>
     </div>

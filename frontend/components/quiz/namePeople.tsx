@@ -41,7 +41,7 @@ export default function NamePeople({
       </div>
 
       <div className="mt-12 text-2xl font-medium">
-        Can you identify who this is? (In the picture)
+        Can you identify who this is? (The face on the left)
       </div>
 
       <Bubbles allowContinue={allowContinue} />

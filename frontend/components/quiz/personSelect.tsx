@@ -1,22 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Question } from "@/lib/types";
 import {
   ArrowLeft,
   ArrowRight,
   BookOpenCheck,
   Check,
   FileCheck,
-  ListChecks,
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { Separator } from "../ui/separator";
-import { data } from "./testData";
+import { data } from "./data";
 import { Badge } from "../ui/badge";
 
 export default function PersonSelect({
