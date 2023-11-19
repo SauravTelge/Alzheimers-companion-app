@@ -97,7 +97,7 @@ export default function Page() {
           <>
             <div className="mt-4 flex w-full space-x-4">
               <Input
-                placeholder={"Search through your memories..." + index}
+                placeholder="Search through your memories..."
                 className="grow"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
@@ -114,9 +114,8 @@ export default function Page() {
               </Button>
             </div>
             {query !== "" ? (
-              <div className="mb-2 mt-4 text-center text-xs font-medium">
-                {/* Currently displaying query: {query} */}
-                {JSON.stringify(results)}
+              <div className="mb-2 mt-4 text-center text-lg font-medium">
+                Currently displaying query: {query}
               </div>
             ) : null}
           </>
