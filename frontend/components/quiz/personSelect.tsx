@@ -66,8 +66,8 @@ export default function PersonSelect({
         </div>
       </div>
 
-      <div className="mt-12 text-2xl font-medium">
-        On this day, who did you talk to?
+      <div className="mt-12 text-xl font-medium">
+        On this day, who did you talk to? (Select all that apply)
       </div>
 
       <div className="mt-8 flex w-full flex-wrap">
@@ -114,17 +114,18 @@ export default function PersonSelect({
       {submitted !== null ? (
         <>
           {submitted.correct ? (
-            <div className="mt-8 flex items-center space-x-4 text-green-600">
-              <Check className="h-6 w-6 " />
-              <div className="text-lg font-medium">
+            <div className="mt-8 flex items-center text-green-600">
+              <Check className="mr-2 h-4 w-4" />
+              <div className="font-medium">
                 Correct! You remembered everyone you talked to on this day.
               </div>
             </div>
           ) : (
-            <div className="mt-8 flex items-center space-x-4 text-red-600">
-              <X className="h-6 w-6 " />
-              <div className="text-lg font-medium">
-                Incorrect! Try again, or choose to see the correct answer.
+            <div className="mt-8 flex items-center text-red-600">
+              <X className="mr-2 h-4 w-4" />
+              <div className="font-medium">
+                Your selection was incorrect. Try again, or choose to see the
+                correct answer.
               </div>
             </div>
           )}
