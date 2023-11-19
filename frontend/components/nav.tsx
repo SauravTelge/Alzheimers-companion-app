@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Nav() {
   return (
-    <div className="fixed flex h-16 w-screen items-center justify-center border-b border-border">
+    <div className="fixed z-50 flex h-16 w-screen items-center justify-center border-b border-border bg-background">
       <nav className="flex w-full max-w-screen-lg items-center justify-between px-4">
         <Link href="/">
           <BrainCircuit className="h-6 w-6" />

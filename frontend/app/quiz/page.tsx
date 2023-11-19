@@ -6,6 +6,7 @@ import StartQuiz from "@/components/quiz/start";
 import PersonSelect from "@/components/quiz/personSelect";
 import NamePeople from "@/components/quiz/namePeople";
 import ContextQuestions from "@/components/quiz/contextQuestions";
+import Nav from "@/components/nav";
 
 export default function Page() {
   const [progress, setProgress] = useState(-1);
@@ -13,24 +14,28 @@ export default function Page() {
   const [date, setDate] = useState<Date>(new Date());
 
   return (
-    <main className="flex min-h-screen w-screen items-start justify-center overflow-x-hidden pt-24">
-      <div className="flex h-full w-full max-w-screen-lg flex-col items-start justify-start px-4">
-        {progress <= -1 ? (
-          <StartQuiz
-            progress={progress}
-            setProgress={setProgress}
-            date={date}
-            setDate={setDate}
-          />
-        ) : progress === 0 ? (
-          <PersonSelect setProgress={setProgress} date={date} />
-        ) : progress === 1 ? (
-          <NamePeople setProgress={setProgress} date={date} />
-        ) : progress === 2 ? (
-          <ContextQuestions setProgress={setProgress} date={date} />
-        ) : null}
-      </div>
-    </main>
+    <>
+      <Nav />
+
+      <main className="flex min-h-screen w-screen items-start justify-center overflow-x-hidden pt-24">
+        <div className="flex h-full w-full max-w-screen-lg flex-col items-start justify-start px-4">
+          {progress <= -1 ? (
+            <StartQuiz
+              progress={progress}
+              setProgress={setProgress}
+              date={date}
+              setDate={setDate}
+            />
+          ) : progress === 0 ? (
+            <PersonSelect setProgress={setProgress} date={date} />
+          ) : progress === 1 ? (
+            <NamePeople setProgress={setProgress} date={date} />
+          ) : progress === 2 ? (
+            <ContextQuestions setProgress={setProgress} date={date} />
+          ) : null}
+        </div>
+      </main>
+    </>
   );
 }
 
