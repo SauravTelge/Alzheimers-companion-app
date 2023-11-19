@@ -2,9 +2,11 @@
 
 export type Quiz = {
   id: string;
-  data: TextQuestion | ImageQuestion;
+  data: Question[];
   createdAt: Date;
 };
+
+export type Question = TextQuestion | ImageQuestion;
 
 export type TextQuestion = {
   type: "text";
