@@ -1,37 +1,54 @@
 # 🧠 CogniCare - Companion App for Memory Support
+🏆 *Social Impact Track Winner @ **MHacks 16***
 
 ## Overview
-🚀 This innovative project, crafted during the MHacks hackathon at the University of Michigan, is designed as a companion for individuals facing memory recollection challenges, including those at risk of Alzheimer's disease or Dementia. Leveraging advanced AI and an interactive UI, our solution offers a stress-free and engaging experience to support memory health.
+🚀 This project, built at the University of Michigan, is designed as a companion for individuals facing memory recollection challenges, including those at risk of Alzheimer's disease or Dementia.
+
+🤖 Leveraging AI-powered memory analysis and cognitively stimulating brain exercises, **we're supporting memory health and allowing patients to remember their lives by reliving their memories.**
 
 ## Key Features
-- **🎮 Interactive Memory Games**: Custom-designed games that stimulate cognitive functions, tailored for individuals with memory recollection issues.
-- **🤖 AI-Powered Reminders**: Smart reminders that help users with daily tasks and medication schedules, enhancing their daily life quality.
-- **👩‍💻 User-Friendly Interface**: An intuitive and easy-to-navigate UI, making technology accessible for all age groups.
-- **📊 Data-Driven Insights**: Analytics to track progress and provide valuable feedback for users and caregivers.
+- **🎮 Interactive Brain Exercises**: Generative AI-powered games that stimulate cognitive functions, intelligently generated from your daily experiences.
+- **🤖 AI-Powered Memory Access**: Your memories are analyzed, stored, and accessible through natural language queries.
+- **👩‍💻 Powerful, Personalized Experience Recollection**: The mental activities are tailored for users with memory recollection issues; they can watch their own memories to remember important events.
+- **📊 Data-Driven Insights**: Analytics to track health status and provide valuable feedback for users and caregivers.
 
-## Getting Started
-🌟 Follow these steps to set up the project on your local machine for development and testing.
+## Running Locally
 
-### Prerequisites
-🔧 List of necessary software and tools, and how to install them.
+### Cloning the repository the local machine.
 
-### Installing
-📚 A detailed guide to setting up the development environment.
+```bash
+git clone https://github.com/ishaan1013/mhacks
+```
 
+### Add your [OpenAI API key](https://platform.openai.com/api-keys) (with GPT-4 access)
 
-## Usage
-💡 Guidelines on how to effectively use the application, including commands or scripts.
+- Required in `backend/app.py` and `backend/gpt_4.ipynb`
 
+### Setup the backend API
 
-## Contributing
-🤝 We welcome contributions to this project! Please adhere to these guidelines for collaboration.
+- 🪐 Preprocess video data with the Jupyter notebook files, which perform the following:
+  - Converting videos into short fragments
+  - Transcribing audio & analyzing frames chosen from video fragments using ORB analysis
+  - Performing facial recognition
+  - Generating questions, names, etc. for brain exercises
+    
+- 🐍 Run the flask app, which will be available at `http://127.0.0.1:5000`.
 
-## License
-📜 This project is licensed under [Your License Choice]. See the LICENSE file for more details.
+```bash
+flask run
+```
+
+### Running the frontend application
+
+```bash
+npm install
+```
+
+Then, run the application in the command line and it will be available at `http://localhost:3000`.
+
+```bash
+npm run dev
+```
 
 ## Acknowledgments
-- 👏 Special thanks to those whose code and ideas inspired this project.
-- ❤️ Gratitude to the MHacks community for their support and inspiration.
-- 🎉 Additional acknowledgments or credits.
-
-
+- 🙏 Memory analysis inspiration (with permission) from **[Rajan's](https://www.rajan.sh/) team's Hack the North project in 2023.**
