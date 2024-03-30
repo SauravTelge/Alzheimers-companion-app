@@ -1,6 +1,8 @@
 # 🧠 CogniCare - Companion App for Memory Support
 🏆 *Social Impact Track Winner @ **MHacks 16***
 
+Devpost link - https://devpost.com/software/cognicare-companion-app-for-memory-support
+
 ## Overview
 🚀 This project, built at the University of Michigan, is designed as a companion for individuals facing memory recollection challenges, including those at risk of Alzheimer's disease or Dementia.
 
